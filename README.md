@@ -1,3 +1,7 @@
+The React.js Essential Training on LinkedIn Learning is a comprehensive course designed to help developers learn the basics of React.js and build scalable, efficient, and dynamic web applications. The course covers the key concepts of React.js, such as components, JSX, state, and props, and provides hands-on experience building a range of projects.
+
+The repository for this course would showcase different aspects of React.js development. The projects would be organized into branches, with each branch containing the code and resources necessary to run the project.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
