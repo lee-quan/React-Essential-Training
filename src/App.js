@@ -1,5 +1,5 @@
 import './App.css';
-
+import { useState } from 'react';
 // function App(props) {
 //   return (
 //     <div className="App">
@@ -10,9 +10,12 @@ import './App.css';
 
 //Destructuring arrays and objects
 function App({ library }) {
+  const [emotion, setEmotion] = useState('sad');
   return (
     <div className="App">
-      <h1>hello {library}</h1>
+      <h1>Hello {library}</h1>
+      <h1>I am {emotion}</h1>
+      <button onClick={() => setEmotion('happy')}>Happy</button>
     </div>
   );
 }
