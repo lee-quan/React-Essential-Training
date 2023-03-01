@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+// function App(props) {
+//   return (
+//     <div className="App">
+//       <h1>hello {props.library}</h1>
+//     </div>
+//   );
+// }
+
+//Destructuring arrays and objects
+function App({ library }) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
+      <h1>hello {library}</h1>
     </div>
   );
 }
+
+const cities = ['Tokyo', 'Shanghai'];
+console.log(cities[0]);
+
+const [tokyo] = ['Tokyo', 'Shanghai'];
+console.log(tokyo);
 
 export default App;
