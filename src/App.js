@@ -1,5 +1,6 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
 // function App(props) {
 //   return (
 //     <div className="App">
@@ -11,6 +12,15 @@ import { useState } from 'react';
 //Destructuring arrays and objects
 function App({ library }) {
   const [emotion, setEmotion] = useState('sad');
+
+  useEffect(() => {
+    console.log(emotion, 'without dependency array');
+  }, []);
+
+  useEffect(() => {
+    console.log(emotion, 'with dependency array');
+  }, [emotion]);
+
   return (
     <div className="App">
       <h1>Hello {library}</h1>
