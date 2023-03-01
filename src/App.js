@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 
 // function App(props) {
 //   return (
@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 //Destructuring arrays and objects
 function App({ library }) {
   const [emotion, setEmotion] = useState('sad');
-
+  const [checked, setChecked] = useReducer((checked) => !checked, false);
   useEffect(() => {
     console.log(emotion, 'without dependency array');
   }, []);
@@ -26,6 +26,9 @@ function App({ library }) {
       <h1>Hello {library}</h1>
       <h1>I am {emotion}</h1>
       <button onClick={() => setEmotion('happy')}>Happy</button>
+
+      <input type="checkbox" value={checked} onChange={setChecked} />
+      <label>{checked ? 'checked' : 'notChecked'}</label>
     </div>
   );
 }
