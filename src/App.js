@@ -1,53 +1,42 @@
 import './App.css';
-import { useRef, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const useInput = (initialValue) => {
-  const [value, setValue] = useState(initialValue);
-  return [
-    {
-      value,
-      onChange: (event) => setValue(event.target.value)
-    },
-    () => setValue(initialValue)
-  ];
+const GithubUser = ({ name, id, avatar }) => {
+  return (
+    <div>
+      <h1>{name}</h1>
+      <p>{id}</p>
+      <img src={avatar} alt={name} />
+    </div>
+  );
 };
 function App() {
-  const txtTitle = useRef();
-  const hexColor = useRef();
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const [title1, setTitle] = useState('');
-  const [color1, setColor] = useState('#000000');
-
-  const [titleProps] = useInput('');
-  const [colorProps] = useInput('#000000');
-
-  const submit = (e) => {
-    e.preventDefault();
-    const title = txtTitle.current.value;
-    const color = hexColor.current.value;
-    alert(`${title}, ${color},${title1}, ${color1}, ${titleProps.value}, ${colorProps.value}`);
-  };
-
-  return (
-    <form onSubmit={submit}>
-      {/* Uncontrolled Components */}
-      <input type="text" placeholder="color title" ref={txtTitle} />
-      <input type="color" ref={hexColor} />
-
-      {/* Controlled Components */}
-      <input
-        type="text"
-        placeholder="color title"
-        value={title1}
-        onChange={(event) => setTitle(event.target.value)}
-      />
-      <input type="color" value={color1} onChange={(event) => setColor(event.target.value)} />
-      {/* Custom Hook */}
-      <input type="text" placeholder="color title" {...titleProps} />
-      <input type="color" {...colorProps} />
-      <button>Add</button>
-    </form>
-  );
+  useEffect(() => {
+    setLoading(true);
+    fetch(`https://api.github.com/users/lee-quan`)
+      .then((response) => response.json())
+      .then(setData)
+      .then(() => setLoading(false))
+      .catch(setError);
+  }, []);
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
+  if (error) {
+    console.log(error);
+    return <h1>Error</h1>;
+  }
+  if (data) {
+    return (
+      <h1>
+        <GithubUser name={data.name} id={data.id} avatar={data.avatar_url} />
+      </h1>
+    );
+  }
 }
 
 export default App;
