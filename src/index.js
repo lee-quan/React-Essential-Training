@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
-import { App, About } from './App';
+import { App, About, History } from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -11,7 +11,11 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/About" element={<About />} />
+        <Route path="/About" element={<About />}>
+          {/* Nested Route with <Outlet /> */}
+          <Route path="History" element={<History />} />
+        </Route>
+        {/* <Route path="/About/History" element={<History />} /> */}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
