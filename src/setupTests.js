@@ -3,3 +3,11 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+function timesTwo(a) {
+  return a * 2;
+}
+
+test('Multiplies by two', () => {
+  expect(timesTwo(4)).toBe(8);
+});
